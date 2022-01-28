@@ -1,7 +1,7 @@
 '''
 Author: ywyz
 Date: 2022-01-25 09:52:01
-LastEditTime: 2022-01-27 11:46:48
+LastEditTime: 2022-01-28 20:25:49
 LastEditors: ywyz
 Description: 将数据导出至mysql数据库
 FilePath: /StudentsInfo/ImportDataToSQL.py
@@ -31,8 +31,16 @@ def InsertOldInfo():
     print("插入成功")
 
 
-InsertOldInfo()
-
-
 def insertNewInfo():
     """插入新表"""
+    filepath = '防疫信息填报表新生.xlsx'
+    wb = load_workbook(filename=filepath)
+    sheetName = "Sheet1"
+    ws = wb[sheetName]
+
+    for row in ws.rows:
+        student = Students(row[2].value, '男', '小班', ' ', row[3].value,
+                           row[4].value, row[7].value, ' ', '0')
+        print(row[3].value)
+        student.InsertIntoSql()
+    print("插入成功")

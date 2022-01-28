@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2022-01-25 11:08:08
-LastEditTime: 2022-01-27 11:10:55
+LastEditTime: 2022-01-28 20:22:37
 LastEditors: ywyz
 Description:学生类型，包括名字，年级，班级，父母姓名，家庭住址，手机号码
 FilePath: /StudentsInfo/Students.py
@@ -63,3 +63,10 @@ class Students():
 
         cursor.execute(sqlInsert)
         db.commit()
+
+
+'''    def checkName(name):
+        sqlCheck = "Select * From basicinfo where name = '%s ' " % name
+        cursor.execute(sqlCheck)
+        if cursor.fetchall():
+'''
