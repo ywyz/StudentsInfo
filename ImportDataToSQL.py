@@ -1,7 +1,7 @@
 '''
 Author: ywyz
 Date: 2022-01-25 09:52:01
-LastEditTime: 2022-01-28 20:25:49
+LastEditTime: 2022-01-28 20:51:47
 LastEditors: ywyz
 Description: 将数据导出至mysql数据库
 FilePath: /StudentsInfo/ImportDataToSQL.py
@@ -42,5 +42,4 @@ def insertNewInfo():
         student = Students(row[2].value, '男', '小班', ' ', row[3].value,
                            row[4].value, row[7].value, ' ', '0')
         print(row[3].value)
-        student.InsertIntoSql()
     print("插入成功")
