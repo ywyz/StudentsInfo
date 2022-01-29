@@ -1,7 +1,7 @@
 '''
 Author: ywyz
 Date: 2022-01-25 09:52:01
-LastEditTime: 2022-01-28 20:51:47
+LastEditTime: 2022-01-29 11:31:00
 LastEditors: ywyz
 Description: 将数据导出至mysql数据库
 FilePath: /StudentsInfo/ImportDataToSQL.py
@@ -9,6 +9,8 @@ FilePath: /StudentsInfo/ImportDataToSQL.py
 
 from openpyxl import load_workbook
 from Students import Students
+import docx
+from docx import Document
 
 
 def InsertOldInfo():
@@ -41,5 +43,22 @@ def insertNewInfo():
     for row in ws.rows:
         student = Students(row[2].value, '男', '小班', ' ', row[3].value,
                            row[4].value, row[7].value, ' ', '0')
-        print(row[3].value)
+        student.InsertIntoSql()
     print("插入成功")
+
+
+def DataTOWord():
+    '''
+    导出幼儿信息排查表中数据
+    '''
+
+    path = '幼儿信息排查表20210506副本.docx'
+    docus = Document(path)
+    tables = docus.tables
+    table = tables[0]
+    print("读取表格成功")
+    for i in range(0, len(table.rows)):  # 遍历行
+        for n in range(0, 13):
+            result = table.cell(i, n).text
+            print(result, end=" ")
+        print()
